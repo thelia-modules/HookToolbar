@@ -23,7 +23,10 @@ use Thelia\Core\Hook\BaseHook;
 class FrontHook extends BaseHook {
 
     public function onMainBodyTop(HookRenderEvent $event)
-    {             
+    {     
+        $css = $this->addCSS('assets/css/min.css');
+        $event->add($css);
+        
         $content = $this->render("main-body-top.html");
         $event->add($content);
     }
