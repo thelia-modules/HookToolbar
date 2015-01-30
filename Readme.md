@@ -4,6 +4,8 @@ HookToolbar add a toolbar on your Front template if you are logged as an adminis
 the page you are visiting (product, category, folder and content pages) and it creates a shortcut to the admin for the
 module page or even the configuration page.
 
+![HookToolbar preview](preview.jpg)
+
 ## Installation
 
 ### Manually
