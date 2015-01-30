@@ -4,7 +4,7 @@
 <nav id="hook-toolbar" class="navbar navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#hook-toolbar-collapse">                
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#hook-toolbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -20,121 +20,121 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{url path='/admin/customers'}">                                
+                            <a href="{url path='/admin/customers'}" target="_blank">
                                 {intl l="Customers"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/orders'}">                 
+                            <a href="{url path='/admin/orders'}" target="_blank">
                                 {intl l="Orders"}
                             </a>
-                        </li>                       
+                        </li>
                         <li>
-                            <a href="{url path='/admin/categories'}">                             
+                            <a href="{url path='/admin/categories'}" target="_blank">
                                 {intl l="Catalog"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/folders'}">                              
+                            <a href="{url path='/admin/folders'}" target="_blank">
                                 {intl l="Folders"}
                             </a>
-                        </li>                        
+                        </li>
                     </ul>
                 </li>
-                <li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span class="fa fa-cubes"></span>
                         {intl l="Tools"}
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{url path='/admin/coupon'}">                                
+                            <a href="{url path='/admin/coupon'}" target="_blank">
                                 {intl l="Coupons"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/sales'}">                                
+                            <a href="{url path='/admin/sales'}" target="_blank">
                                 {intl l="Sales management"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/brand'}">                                
+                            <a href="{url path='/admin/brand'}" target="_blank">
                                 {intl l="Brands"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/export'}">                                
+                            <a href="{url path='/admin/export'}" target="_blank">
                                 {intl l="Export"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/import'}">                                
+                            <a href="{url path='/admin/import'}" target="_blank">
                                 {intl l="Import"}
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{url path='/admin/modules'}">
+                    <a href="{url path='/admin/modules'}" target="_blank">
                         <span class="fa fa-plug"></span>
                         {intl l="Modules"}
                     </a>
                 </li>
                 <li>
-                    <a href="{url path='/admin/configuration'}">
+                    <a href="{url path='/admin/configuration'}" target="_blank">
                         <span class="fa fa-cogs"></span>
                         {intl l="Configuration"}
                     </a>
                 </li>
-            </ul>            
+            </ul>
             <ul id="hook-toolbar-center" class="nav navbar-nav">
                 {if {category attr="id"}}
-                    <li>
-                        <a href="{url path='/admin/categories/update' category_id={category attr="id"}}">
-                            <span class="fa fa-edit"></span>
-                            {intl l="Update category"}
-                        </a>
-                    </li>
+                <li>
+                    <a href="{url path='/admin/categories/update' category_id={category attr="id"}}" target="_blank">
+                    <span class="fa fa-edit"></span>
+                    {intl l="Update category"}
+                    </a>
+                </li>
                 {/if}
                 {if {product attr="id"}}
-                    <li>
-                        <a href="{url path='/admin/products/update' product_id={product attr="id"}}">
-                            <span class="fa fa-edit"></span>
-                            {intl l="Update product"}
-                        </a>
-                    </li>
+                <li>
+                    <a href="{url path='/admin/products/update' product_id={product attr="id"}}" target="_blank">
+                    <span class="fa fa-edit"></span>
+                    {intl l="Update product"}
+                    </a>
+                </li>
                 {/if}
                 {if {folder attr="id"}}
-                    <li>
-                        <a href="{url path="/admin/folders/update/{folder attr='id'}"}">
-                            <span class="fa fa-edit"></span>
-                            {intl l="Update folder"}
-                        </a>
-                    </li>
+                <li>
+                    <a href="{url path="/admin/folders/update/{folder attr='id'}"}" target="_blank">
+                    <span class="fa fa-edit"></span>
+                    {intl l="Update folder"}
+                    </a>
+                </li>
                 {/if}
                 {if {content attr="id"}}
-                    <li>
-                        <a href="{url path="/admin/content/update/{content attr='id'}"}">
-                            <span class="fa fa-edit"></span>
-                            {intl l="Update content"}
-                        </a>
-                    </li>
+                <li>
+                    <a href="{url path="/admin/content/update/{content attr='id'}"}" target="_blank">
+                    <span class="fa fa-edit"></span>
+                    {intl l="Update content"}
+                    </a>
+                </li>
                 {/if}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span class="fa fa-user"></span>
                         {intl l="Hi, %name" name="{admin attr='firstname'} {admin attr='lastname'}"}
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{url path='/admin/configuration/administrators'}">                                
+                            <a href="{url path='/admin/configuration/administrators'}" target="_blank">
                                 {intl l="Profile"}
                             </a>
                         </li>
                         <li>
-                            <a href="{url path='/admin/logout'}">                                
+                            <a href="{url path='/admin/logout'}" target="_blank">
                                 {intl l="Logout"}
                             </a>
                         </li>
