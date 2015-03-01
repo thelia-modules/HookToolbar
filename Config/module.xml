@@ -4,10 +4,10 @@
         xsi:schemaLocation="http://thelia.net/schema/dic/module http://thelia.net/schema/dic/module/module-2_1.xsd">
     <fullnamespace>HookToolbar\HookToolbar</fullnamespace>
     <descriptive locale="en_US">
-        <title>Bar d'outils</title>
+        <title>Admin toolbar in front-offcie</title>
     </descriptive>
     <descriptive locale="fr_FR">
-        <title>Toolbar</title>
+        <title>Barre d'outil d'administration sur le front-office</title>
     </descriptive>
     <languages>
         <language>en_US</language>

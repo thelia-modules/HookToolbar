@@ -49,7 +49,7 @@
                         {/loop}
                     </ul>
                 </li>
-                
+
                 {loop name="admin.tools.view" type="auth" role="ADMIN" resource="admin.tools" access="VIEW"}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -111,7 +111,28 @@
                         </a>
                     </li>
                 {/loop}
+
+                {loop name="admin.clear-cache.view" type="auth" role="ADMIN" resource="admin.cache" access="VIEW"}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span class="fa fa-recycle"></span>
+                            {intl l="Clear caches"}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{url path="/admin-toolbar/clear-cache/internal"}">{intl l="Flush internal cache"}</a>
+                            </li>
+                            <li>
+                                <a href="{url path="/admin-toolbar/clear-cache/assets"}">{intl l="Flush assets cache"}</a>
+                            </li>
+                            <li>
+                                <a href="{url path="/admin-toolbar/clear-cache/files"}">{intl l="Flush images and documents cache"}</a>
+                            </li>
+                        </ul>
+                    </li>
+                {/loop}
             </ul>
+
             <ul id="hook-toolbar-center" class="nav navbar-nav">
                 {loop name="admin.category.update" type="auth" role="ADMIN" resource="admin.category" access="UPDATE"}
                     {if {category attr="id"}}
@@ -134,9 +155,10 @@
                     {/if}
                 {/loop}
                 {loop name="admin.folder.update" type="auth" role="ADMIN" resource="admin.folder" access="UPDATE"}
-                    {if {folder attr="id"}}
+                    {$folderId = {folder attr='id'}}
+                    {if $folderId}
                         <li>
-                            <a href="{url path="/admin/folders/update/{folder attr='id'}"}" target="_blank">
+                            <a href="{url path="/admin/folders/update/folderId"}" target="_blank">
                             <span class="fa fa-edit"></span>
                             {intl l="Update folder"}
                             </a>
@@ -146,7 +168,8 @@
                 {loop name="admin.content.update" type="auth" role="ADMIN" resource="admin.content" access="UPDATE"}
                     {if {content attr="id"}}
                         <li>
-                            <a href="{url path="/admin/content/update/{content attr='id'}"}" target="_blank">
+                            {$contentId = {content attr='id'}}
+                            <a href="{url path="/admin/content/update/$contentId"}" target="_blank">
                             <span class="fa fa-edit"></span>
                             {intl l="Update content"}
                             </a>
@@ -154,11 +177,12 @@
                     {/if}
                 {/loop}
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span class="fa fa-user"></span>
-                        {intl l="Hi, %name" name="{admin attr='firstname'} {admin attr='lastname'}"}
+                        {intl l="Hi, %firstname %lastname" firstname={admin attr='firstname'} lastname={admin attr='lastname'}}
                     </a>
                     <ul class="dropdown-menu">
                         <li>
