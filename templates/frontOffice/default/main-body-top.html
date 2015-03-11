@@ -110,25 +110,27 @@
                     </li>
                 {/loop}
 
-                {loop name="admin.clear-cache.view" type="auth" role="ADMIN" resource="admin.cache" access="VIEW"}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="fa fa-recycle"></span>
-                            {intl d="hooktoolbar.fo.default" l="Clear caches"}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{url path="/admin-toolbar/clear-cache/internal"}">{intl d="hooktoolbar.fo.default" l="Flush internal cache"}</a>
-                            </li>
-                            <li>
-                                <a href="{url path="/admin-toolbar/clear-cache/assets"}">{intl d="hooktoolbar.fo.default" l="Flush assets cache"}</a>
-                            </li>
-                            <li>
-                                <a href="{url path="/admin-toolbar/clear-cache/files"}">{intl d="hooktoolbar.fo.default" l="Flush images and documents cache"}</a>
-                            </li>
-                        </ul>
-                    </li>
-                {/loop}
+                {if $mode == 'dev'}
+                    {loop name="admin.clear-cache.view" type="auth" role="ADMIN" resource="admin.cache" access="VIEW"}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="fa fa-recycle"></span>
+                                {intl d="hooktoolbar.fo.default" l="Clear caches"}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{url path="/admin-toolbar/clear-cache/internal"}">{intl d="hooktoolbar.fo.default" l="Flush internal cache"}</a>
+                                </li>
+                                <li>
+                                    <a href="{url path="/admin-toolbar/clear-cache/assets"}">{intl d="hooktoolbar.fo.default" l="Flush assets cache"}</a>
+                                </li>
+                                <li>
+                                    <a href="{url path="/admin-toolbar/clear-cache/files"}">{intl d="hooktoolbar.fo.default" l="Flush images and documents cache"}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {/loop}
+                {/if}
             </ul>
 
             <ul id="hook-toolbar-center" class="nav navbar-nav">
