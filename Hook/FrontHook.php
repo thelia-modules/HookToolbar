@@ -11,23 +11,30 @@
 /*************************************************************************************/
 
 namespace HookToolbar\Hook;
+
 use Thelia\Core\Event\Hook\HookRenderEvent;
 use Thelia\Core\Hook\BaseHook;
-
 
 /**
  * Class FrontHook
  * @package HookToolbar\Hook
  * @author Michaël Espeche <michael.espeche@gmail.com>
  */
-class FrontHook extends BaseHook {
+class FrontHook extends BaseHook
+{
+    protected $mode;
+
+    public function __construct($debugMode)
+    {
+        $this->mode = $debugMode ? 'dev' : 'prod';
+    }
 
     public function onMainBodyTop(HookRenderEvent $event)
-    {     
+    {
         $css = $this->addCSS('assets/css/min.css');
         $event->add($css);
         
-        $content = $this->render("main-body-top.html");
+        $content = $this->render("main-body-top.html", [ 'mode' => $this->mode ]);
         $event->add($content);
     }
 

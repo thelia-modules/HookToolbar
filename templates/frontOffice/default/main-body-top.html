@@ -1,5 +1,3 @@
-{default_translation_domain domain="hooktoolbar.fo.default"}
-
 {loop type="auth" name="is.admin" role="ADMIN"}
 <nav id="hook-toolbar" class="navbar">
     <div class="container-fluid">
@@ -22,73 +20,73 @@
                         {loop name="admin.customer.view" type="auth" role="ADMIN" resource="admin.customer" access="VIEW"}
                             <li>
                                 <a href="{url path='/admin/customers'}" target="_blank">
-                                    {intl l="Customers"}
+                                    {intl d="hooktoolbar.fo.default" l="Customers"}
                                 </a>
                             </li>
                         {/loop}
                         {loop name="admin.order.view" type="auth" role="ADMIN" resource="admin.order" access="VIEW"}
                             <li>
                                 <a href="{url path='/admin/orders'}" target="_blank">
-                                    {intl l="Orders"}
+                                    {intl d="hooktoolbar.fo.default" l="Orders"}
                                 </a>
                             </li>
                         {/loop}
                         {loop name="admin.category.view" type="auth" role="ADMIN" resource="admin.category" access="VIEW"}
                             <li>
                                 <a href="{url path='/admin/categories'}" target="_blank">
-                                    {intl l="Catalog"}
+                                    {intl d="hooktoolbar.fo.default" l="Catalog"}
                                 </a>
                             </li>
                         {/loop}
                         {loop name="admin.folder.view" type="auth" role="ADMIN" resource="admin.folder" access="VIEW"}
                             <li>
                                 <a href="{url path='/admin/folders'}" target="_blank">
-                                    {intl l="Folders"}
+                                    {intl d="hooktoolbar.fo.default" l="Folders"}
                                 </a>
                             </li>
                         {/loop}
                     </ul>
                 </li>
-                
+
                 {loop name="admin.tools.view" type="auth" role="ADMIN" resource="admin.tools" access="VIEW"}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="fa fa-cubes"></span>
-                            {intl l="Tools"}
+                            {intl d="hooktoolbar.fo.default" l="Tools"}
                         </a>
                         <ul class="dropdown-menu">
                             {loop name="admin.coupon.view" type="auth" role="ADMIN" resource="admin.coupon" access="VIEW"}
                                 <li>
                                     <a href="{url path='/admin/coupon'}" target="_blank">
-                                        {intl l="Coupons"}
+                                        {intl d="hooktoolbar.fo.default" l="Coupons"}
                                     </a>
                                 </li>
                             {/loop}
                             {loop name="admin.sale.view" type="auth" role="ADMIN" resource="admin.sales" access="VIEW"}
                                 <li>
                                     <a href="{url path='/admin/sales'}" target="_blank">
-                                        {intl l="Sales management"}
+                                        {intl d="hooktoolbar.fo.default" l="Sales management"}
                                     </a>
                                 </li>
                             {/loop}
                             {loop name="admin.brand.view" type="auth" role="ADMIN" resource="admin.brand" access="VIEW"}
                                 <li>
                                     <a href="{url path='/admin/brand'}" target="_blank">
-                                        {intl l="Brands"}
+                                        {intl d="hooktoolbar.fo.default" l="Brands"}
                                     </a>
                                 </li>
                             {/loop}
                             {loop name="admin.export.view" type="auth" role="ADMIN" resource="admin.export" access="VIEW"}
                                 <li>
                                     <a href="{url path='/admin/export'}" target="_blank">
-                                        {intl l="Export"}
+                                        {intl d="hooktoolbar.fo.default" l="Export"}
                                     </a>
                                 </li>
                             {/loop}
                             {loop name="admin.import.view" type="auth" role="ADMIN" resource="admin.import" access="VIEW"}
                                 <li>
                                     <a href="{url path='/admin/import'}" target="_blank">
-                                        {intl l="Import"}
+                                        {intl d="hooktoolbar.fo.default" l="Import"}
                                     </a>
                                 </li>
                             {/loop}
@@ -99,7 +97,7 @@
                     <li>
                         <a href="{url path='/admin/modules'}" target="_blank">
                             <span class="fa fa-plug"></span>
-                            {intl l="Modules"}
+                            {intl d="hooktoolbar.fo.default" l="Modules"}
                         </a>
                     </li>
                 {/loop}
@@ -107,18 +105,41 @@
                     <li>
                         <a href="{url path='/admin/configuration'}" target="_blank">
                             <span class="fa fa-cogs"></span>
-                            {intl l="Configuration"}
+                            {intl d="hooktoolbar.fo.default" l="Configuration"}
                         </a>
                     </li>
                 {/loop}
+
+                {if $mode == 'dev'}
+                    {loop name="admin.clear-cache.view" type="auth" role="ADMIN" resource="admin.cache" access="VIEW"}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="fa fa-recycle"></span>
+                                {intl d="hooktoolbar.fo.default" l="Clear caches"}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{url path="/admin-toolbar/clear-cache/internal"}">{intl d="hooktoolbar.fo.default" l="Flush internal cache"}</a>
+                                </li>
+                                <li>
+                                    <a href="{url path="/admin-toolbar/clear-cache/assets"}">{intl d="hooktoolbar.fo.default" l="Flush assets cache"}</a>
+                                </li>
+                                <li>
+                                    <a href="{url path="/admin-toolbar/clear-cache/files"}">{intl d="hooktoolbar.fo.default" l="Flush images and documents cache"}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {/loop}
+                {/if}
             </ul>
+
             <ul id="hook-toolbar-center" class="nav navbar-nav">
                 {loop name="admin.category.update" type="auth" role="ADMIN" resource="admin.category" access="UPDATE"}
                     {if {category attr="id"}}
                         <li>
                             <a href="{url path='/admin/categories/update' category_id={category attr="id"}}" target="_blank">
                             <span class="fa fa-edit"></span>
-                            {intl l="Update category"}
+                            {intl d="hooktoolbar.fo.default" l="Update category"}
                             </a>
                         </li>
                     {/if}
@@ -128,17 +149,18 @@
                         <li>
                             <a href="{url path='/admin/products/update' product_id={product attr="id"}}" target="_blank">
                             <span class="fa fa-edit"></span>
-                            {intl l="Update product"}
+                            {intl d="hooktoolbar.fo.default" l="Update product"}
                             </a>
                         </li>
                     {/if}
                 {/loop}
                 {loop name="admin.folder.update" type="auth" role="ADMIN" resource="admin.folder" access="UPDATE"}
-                    {if {folder attr="id"}}
+                    {$folderId = {folder attr='id'}}
+                    {if $folderId}
                         <li>
-                            <a href="{url path="/admin/folders/update/{folder attr='id'}"}" target="_blank">
+                            <a href="{url path="/admin/folders/update/folderId"}" target="_blank">
                             <span class="fa fa-edit"></span>
-                            {intl l="Update folder"}
+                            {intl d="hooktoolbar.fo.default" l="Update folder"}
                             </a>
                         </li>
                     {/if}
@@ -146,29 +168,31 @@
                 {loop name="admin.content.update" type="auth" role="ADMIN" resource="admin.content" access="UPDATE"}
                     {if {content attr="id"}}
                         <li>
-                            <a href="{url path="/admin/content/update/{content attr='id'}"}" target="_blank">
+                            {$contentId = {content attr='id'}}
+                            <a href="{url path="/admin/content/update/$contentId"}" target="_blank">
                             <span class="fa fa-edit"></span>
-                            {intl l="Update content"}
+                            {intl d="hooktoolbar.fo.default" l="Update content"}
                             </a>
                         </li>
                     {/if}
                 {/loop}
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         <span class="fa fa-user"></span>
-                        {intl l="Hi, %name" name="{admin attr='firstname'} {admin attr='lastname'}"}
+                        {intl d="hooktoolbar.fo.default" l="Hi, %firstname %lastname" firstname={admin attr='firstname'} lastname={admin attr='lastname'}}
                     </a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="{url path='/admin/configuration/administrators'}" target="_blank">
-                                {intl l="Profile"}
+                                {intl d="hooktoolbar.fo.default" l="Profile"}
                             </a>
                         </li>
                         <li>
                             <a href="{url path='/admin/logout'}" target="_blank">
-                                {intl l="Logout"}
+                                {intl d="hooktoolbar.fo.default" l="Logout"}
                             </a>
                         </li>
                     </ul>
