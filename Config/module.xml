@@ -4,16 +4,16 @@
         xsi:schemaLocation="http://thelia.net/schema/dic/module http://thelia.net/schema/dic/module/module-2_1.xsd">
     <fullnamespace>HookToolbar\HookToolbar</fullnamespace>
     <descriptive locale="en_US">
-        <title>Admin toolbar in front-offcie</title>
+        <title>Admin toolbar in front-office</title>
     </descriptive>
     <descriptive locale="fr_FR">
-        <title>Barre d'outil d'administration sur le front-office</title>
+        <title>Barre d'outils d'administration sur le front-office</title>
     </descriptive>
     <languages>
         <language>en_US</language>
         <language>fr_FR</language>
     </languages>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <author>
         <name>Michaël Espeche</name>
         <email>michael.espeche@gmail.com</email>
