@@ -12,6 +12,9 @@
 
 namespace HookToolbar\Controller;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Event\Cache\CacheEvent;
 use Thelia\Core\Event\TheliaEvents;
@@ -21,10 +24,11 @@ use Thelia\Model\ConfigQuery;
 
 /**
  * @author Franck Allimant <franck@cqfdev.fr>
+ * @Route("/admin-toolbar", name="admin_toolbar")
  */
 class ToolbarController extends BaseAdminController
 {
-    protected function doFlushCache($dir) {
+    protected function doFlushCache($dir, EventDispatcherInterface $eventDispatcher) {
 
         if (null !== $result = $this->checkAuth(AdminResources::ADVANCED_CONFIGURATION, [], AccessManager::UPDATE)) {
             return $result;
@@ -32,25 +36,34 @@ class ToolbarController extends BaseAdminController
 
         $event = new CacheEvent($dir);
 
-        $this->dispatch(TheliaEvents::CACHE_CLEAR, $event);
+        $eventDispatcher->dispatch($event, TheliaEvents::CACHE_CLEAR);
 
         return null;
     }
 
-    public function flushInternalAction()
+    /**
+     * @Route("/clear-cache/internal", name="_clear_internal_cache", methods="GET")
+     */
+    public function flushInternalAction(EventDispatcherInterface $eventDispatcher, $kernelCacheDir)
     {
-       return $this->doFlushCache($this->container->getParameter("kernel.cache_dir"));
+       return $this->doFlushCache($kernelCacheDir, $eventDispatcher);
     }
 
-    public function flushAssetsAction()
+    /**
+     * @Route("/clear-cache/assets", name="_clear_assets_cache", methods="GET")
+     */
+    public function flushAssetsAction(EventDispatcherInterface $eventDispatcher)
     {
-        return $this->doFlushCache(THELIA_WEB_DIR . "assets");
+        return $this->doFlushCache(THELIA_WEB_DIR . "assets", $eventDispatcher);
     }
 
-    public function flushImagesAndDocumentsAction()
+    /**
+     * @Route("/clear-cache/files", name="_clear_files_cache", methods="GET")
+     */
+    public function flushImagesAndDocumentsAction(EventDispatcherInterface $eventDispatcher)
     {
-        $this->doFlushCache(THELIA_WEB_DIR . ConfigQuery::read('image_cache_dir_from_web_root', 'cache'));
+        $this->doFlushCache(THELIA_WEB_DIR . ConfigQuery::read('image_cache_dir_from_web_root', 'cache'), $eventDispatcher);
 
-        return $this->doFlushCache(THELIA_WEB_DIR . ConfigQuery::read('document_cache_dir_from_web_root', 'cache'));
+        return $this->doFlushCache(THELIA_WEB_DIR . ConfigQuery::read('document_cache_dir_from_web_root', 'cache'), $eventDispatcher);
     }
 }
