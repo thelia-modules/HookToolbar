@@ -24,9 +24,9 @@ class FrontHook extends BaseHook
 {
     protected $mode;
 
-    public function __construct($debugMode)
+    public function __construct($kernelDebug)
     {
-        $this->mode = $debugMode ? 'dev' : 'prod';
+        $this->mode = $kernelDebug ? 'dev' : 'prod';
     }
 
     public function onMainBodyTop(HookRenderEvent $event)
@@ -43,4 +43,4 @@ class FrontHook extends BaseHook
 
         $event->add('<script src="https://use.fontawesome.com/fea8382d6c.js"></script>');
     }
-} 
+}
