@@ -23,24 +23,20 @@ use Thelia\Core\Hook\BaseHook;
 class FrontHook extends BaseHook
 {
     protected $mode;
+    
 
-    public function __construct($debugMode)
+    public function __construct($kernelDebug)
     {
-        $this->mode = $debugMode ? 'dev' : 'prod';
+        $this->mode = $kernelDebug ? 'dev' : 'prod';
     }
 
     public function onMainBodyTop(HookRenderEvent $event)
     {
-
-        $css = $this->addCSS('assets/css/min.css');
-        $event->add($css);
-        $content = $this->render("main-body-top.html", [ 'mode' => $this->mode ]);
-        $event->add($content);
+        if (null !== $this->getSession()->getAdminUser()) {
+            $css = $this->addCSS('assets/css/min.css');
+            $event->add($css);
+            $content = $this->render("main-body-top.html", [ 'mode' => $this->mode ]);
+            $event->add($content);
+        }
     }
-
-    public function onMainStyleSheet(HookRenderEvent $event)
-    {
-
-        $event->add('<script src="https://use.fontawesome.com/fea8382d6c.js"></script>');
-    }
-} 
+}
