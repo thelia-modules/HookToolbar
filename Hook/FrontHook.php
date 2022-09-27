@@ -14,6 +14,7 @@ namespace HookToolbar\Hook;
 
 use Thelia\Core\Event\Hook\HookRenderEvent;
 use Thelia\Core\Hook\BaseHook;
+use Thelia\Core\Security\SecurityContext;
 
 /**
  * Class FrontHook
@@ -23,6 +24,7 @@ use Thelia\Core\Hook\BaseHook;
 class FrontHook extends BaseHook
 {
     protected $mode;
+    
 
     public function __construct($kernelDebug)
     {
@@ -31,16 +33,11 @@ class FrontHook extends BaseHook
 
     public function onMainBodyTop(HookRenderEvent $event)
     {
-
-        $css = $this->addCSS('assets/css/min.css');
-        $event->add($css);
-        $content = $this->render("main-body-top.html", [ 'mode' => $this->mode ]);
-        $event->add($content);
-    }
-
-    public function onMainStyleSheet(HookRenderEvent $event)
-    {
-
-        $event->add('<script src="https://use.fontawesome.com/fea8382d6c.js"></script>');
+        if (null !== $this->getSession()->getAdminUser()) {
+            $css = $this->addCSS('assets/css/min.css');
+            $event->add($css);
+            $content = $this->render("main-body-top.html", [ 'mode' => $this->mode ]);
+            $event->add($content);
+        }
     }
 }
